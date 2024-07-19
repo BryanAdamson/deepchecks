@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: deepchecks_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - SQLALCHEMY_DATABASE_URL=sqlite:///./app.db
+      - SQLALCHEMY_TEST_DATABASE_URL=sqlite:///./app.db
+      - ALERT_THRESHOLD=50
