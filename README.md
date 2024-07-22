@@ -39,7 +39,7 @@ the `ALERT_THRESHOLD` variable.
 1. Ensure docker-compose.yml is in the root of your project directory.
 2. Build and start the services:
     ```
-    docker-compose up --build
+    BUILDKIT_PROGRESS=plain docker-compose up --build
     ```
  The application will be available at http://127.0.0.1:8000.
 
