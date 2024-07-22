@@ -1,9 +1,9 @@
 import csv
 from fastapi import BackgroundTasks
 from sqlalchemy.orm import Session
-from app.services.interaction_service import InteractionService
-from app.services.metric_service import MetricService
-from app.services.alert_service import AlertService
+from core.services.interaction_service import InteractionService
+from core.services.metric_service import MetricService
+from core.services.alert_service import AlertService
 from infrastructure.repositories.interaction_repository import InteractionRepository
 from infrastructure.repositories.metric_repository import MetricRepository
 from infrastructure.repositories.alert_repository import AlertRepository

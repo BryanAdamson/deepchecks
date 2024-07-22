@@ -2,10 +2,10 @@ from fastapi import APIRouter, Depends, UploadFile, File, BackgroundTasks
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-from app.services.alert_service import AlertService
-from app.services.csv_service import CSVService
-from app.services.interaction_service import InteractionService
-from app.services.metric_service import MetricService
+from core.services.alert_service import AlertService
+from core.services.csv_service import CSVService
+from core.services.interaction_service import InteractionService
+from core.services.metric_service import MetricService
 from app.utils.response_helper import create_response
 from infrastructure.database import get_db
 from infrastructure.repositories.alert_repository import AlertRepository

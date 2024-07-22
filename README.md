@@ -31,6 +31,9 @@ deepchecks/
 ```
 
 ## Installation
+After installing this application, Make sure to create a .env file and copy the content of the .env.example into your 
+newly created file. Also, ensure that you've assigned values to all the variables present. For example, 
+the `ALERT_THRESHOLD` variable.
 ### Using Docker
 1. Clone the repository:
     ```

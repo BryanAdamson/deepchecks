@@ -1,7 +1,7 @@
 from fastapi import Depends, Query, APIRouter
 from sqlalchemy.orm import Session
 
-from app.services.alert_service import AlertService
+from core.services.alert_service import AlertService
 from app.utils.response_helper import create_response
 from infrastructure.database import get_db
 from infrastructure.repositories.alert_repository import AlertRepository
