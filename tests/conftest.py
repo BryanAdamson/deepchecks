@@ -7,9 +7,8 @@ from sqlalchemy.orm import sessionmaker
 from infrastructure.database import Base
 
 # Change to test database during testing
-SQLALCHEMY_TEST_DATABASE_URL = os.getenv(
-    "SQLALCHEMY_TEST_DATABASE_URL", "sqlite:///./test.db"
-)
+db_name = os.getenv("SQLALCHEMY_TEST_DATABASE", "test.db")
+SQLALCHEMY_TEST_DATABASE_URL = f"sqlite:///./{db_name}"
 
 engine = create_engine(SQLALCHEMY_TEST_DATABASE_URL)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

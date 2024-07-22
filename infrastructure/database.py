@@ -12,9 +12,9 @@ from sqlalchemy import (
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-db_name = os.getenv("SQLALCHEMY_DATABASE_URL", "deepchecks.db")
+db_name = os.getenv("SQLALCHEMY_DATABASE", "deepchecks.db")
 
-SQLALCHEMY_DATABASE_URL = f"sqlite:///db/{db_name}"
+SQLALCHEMY_DATABASE_URL = f"sqlite:///./{db_name}"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
