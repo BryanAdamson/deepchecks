@@ -1,10 +1,20 @@
 import os
 
-from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, ForeignKey
+from sqlalchemy import (
+    Column,
+    DateTime,
+    Float,
+    ForeignKey,
+    Integer,
+    String,
+    create_engine,
+)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URL = os.getenv('SQLALCHEMY_DATABASE_URL', 'sqlite:///./deepchecks.db')
+SQLALCHEMY_DATABASE_URL = os.getenv(
+    "SQLALCHEMY_DATABASE_URL", "sqlite:///./deepchecks.db"
+)
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
@@ -22,7 +32,7 @@ def get_db():
 
 
 class InteractionModel(Base):
-    __tablename__ = 'interactions'
+    __tablename__ = "interactions"
     id = Column(Integer, primary_key=True, index=True)
     input = Column(String)
     output = Column(String)
@@ -30,17 +40,17 @@ class InteractionModel(Base):
 
 
 class MetricModel(Base):
-    __tablename__ = 'metrics'
+    __tablename__ = "metrics"
     id = Column(Integer, primary_key=True, index=True)
-    interaction_id = Column(Integer, ForeignKey('interactions.id'))
+    interaction_id = Column(Integer, ForeignKey("interactions.id"))
     input_metric = Column(Float)
     output_metric = Column(Float)
 
 
 class AlertModel(Base):
-    __tablename__ = 'alerts'
+    __tablename__ = "alerts"
     id = Column(Integer, primary_key=True, index=True)
-    interaction_id = Column(Integer, ForeignKey('interactions.id'))
+    interaction_id = Column(Integer, ForeignKey("interactions.id"))
     element = Column(String)
     metric_value = Column(Float)
     alert_type = Column(String)

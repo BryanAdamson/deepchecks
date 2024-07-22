@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+
 from core.models.alert import Alert
 from infrastructure.database import AlertModel
 
@@ -13,7 +14,7 @@ class AlertRepository:
             element=alert.element,
             metric_value=alert.metric_value,
             alert_type=alert.alert_type,
-            created_at=alert.created_at
+            created_at=alert.created_at,
         )
         self.db.add(db_alert)
         self.db.commit()

@@ -1,15 +1,14 @@
 from fastapi.testclient import TestClient
+
 from main import app
 
 client = TestClient(app)
 
+
 def test_create_interaction_happy_path(setup_database, db_session):
     response = client.post(
         "/api/interactions",
-        json={
-            "input_text": "Example input",
-            "output_text": "Example output"
-        }
+        json={"input_text": "Example input", "output_text": "Example output"},
     )
 
     assert response.status_code == 200
@@ -24,11 +23,7 @@ def test_create_interaction_happy_path(setup_database, db_session):
 
 def test_create_interaction_sad_path(setup_database, db_session):
     response = client.post(
-        "/api/interactions",
-        json={
-            "input_text": None,
-            "output_text": "Example output"
-        }
+        "/api/interactions", json={"input_text": None, "output_text": "Example output"}
     )
 
     assert response.status_code == 422  # Unprocessable Entity
@@ -62,10 +57,7 @@ def test_get_alerts_with_interaction_id_happy_path(setup_database, db_session):
     # Create an interaction first
     client.post(
         "/api/interactions",
-        json={
-            "input_text": "Example input",
-            "output_text": "Example output"
-        }
+        json={"input_text": "Example input", "output_text": "Example output"},
     )
 
     # Fetch alerts with interaction_id
@@ -88,10 +80,7 @@ def test_upload_csv_happy_path(setup_database, db_session):
     )
 
     response = client.post(
-        "/api/interactions/bulk",
-        files={
-            "file": ("test.csv", csv_content, "text/csv")
-        }
+        "/api/interactions/bulk", files={"file": ("test.csv", csv_content, "text/csv")}
     )
 
     assert response.status_code == 200
@@ -99,17 +88,16 @@ def test_upload_csv_happy_path(setup_database, db_session):
     json_response = response.json()
 
     assert json_response["success"] is True
-    assert json_response["message"] == "CSV file received. Processing in the background."
+    assert (
+        json_response["message"] == "CSV file received. Processing in the background."
+    )
 
 
 def test_upload_csv_sad_path(setup_database, db_session):
     csv_content = "Invalid CSV content"
 
     response = client.post(
-        "/api/interactions/bulk",
-        files={
-            "file": ("test.csv", csv_content, "text/csv")
-        }
+        "/api/interactions/bulk", files={"file": ("test.csv", csv_content, "text/csv")}
     )
 
     assert response.status_code == 200
@@ -117,5 +105,7 @@ def test_upload_csv_sad_path(setup_database, db_session):
     json_response = response.json()
 
     assert json_response["success"] is True
-    assert json_response["message"] == "CSV file received. Processing in the background."
+    assert (
+        json_response["message"] == "CSV file received. Processing in the background."
+    )
     # The success here is about receiving the file; actual processing will fail, which is handled in the background.

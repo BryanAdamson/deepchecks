@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+
 from core.models.interaction import Interaction
 from infrastructure.database import InteractionModel
 
@@ -11,7 +12,7 @@ class InteractionRepository:
         db_interaction = InteractionModel(
             input=interaction.input,
             output=interaction.output,
-            created_at=interaction.created_at
+            created_at=interaction.created_at,
         )
         self.db.add(db_interaction)
         self.db.commit()

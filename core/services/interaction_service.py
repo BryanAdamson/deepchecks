@@ -1,6 +1,7 @@
+from datetime import datetime
+
 from core.models.interaction import Interaction
 from infrastructure.repositories.interaction_repository import InteractionRepository
-from datetime import datetime
 
 
 class InteractionService:
@@ -9,10 +10,7 @@ class InteractionService:
 
     def create_interaction(self, input_text: str, output_text: str) -> Interaction:
         interaction = Interaction(
-            id=0,
-            input=input_text,
-            output=output_text,
-            created_at=datetime.utcnow()
+            id=0, input=input_text, output=output_text, created_at=datetime.utcnow()
         )
         return self.repository.create_interaction(interaction)
 

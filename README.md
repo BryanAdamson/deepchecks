@@ -34,22 +34,8 @@ deepchecks/
 After installing this application, Make sure to create a .env file and copy the content of the .env.example into your 
 newly created file. Also, ensure that you've assigned values to all the variables present. For example, 
 the `ALERT_THRESHOLD` variable.
-### Using Docker
-1. Clone the repository:
-    ```
-    git clone https://github.com/BryanAdamson/deepchecks.git
-    cd deepchecks
-    ```
-2. Build the Docker image:
-    ```
-    docker build -t deepchecks_app .
-    ```
-3. Run the Docker container:
-    ```
-    docker run -d -p 8000:8000 deepchecks_app
-    ```
-   
-### Using Docker Compose (Optional)
+
+### Using Docker Compose
 1. Ensure docker-compose.yml is in the root of your project directory.
 2. Build and start the services:
     ```

@@ -4,14 +4,8 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install upgrade pip: setuptools wheel; pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+ENV PORT=${PORT}
 
-EXPOSE 8000
-
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-
-ENV ALERT_THRESHOLD=50
-ENV SQLALCHEMY_DATABASE_URL="sqlite:///./app.db"
-ENV SQLALCHEMY_TEST_DATABASE_URL="sqlite:///./test.db"
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT}"]
