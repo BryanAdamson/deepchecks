@@ -1,4 +1,5 @@
 import csv
+import os
 
 from fastapi import BackgroundTasks
 from sqlalchemy.orm import Session
@@ -39,7 +40,10 @@ class CSVService:
                 )
 
     def upload_and_process_csv(self, file: bytes, background_tasks: BackgroundTasks):
-        file_path = "/uploads/uploaded_file.csv"
+        upload_dir = "uploads"
+        os.makedirs(upload_dir, exist_ok=True)
+        file_path = os.path.join(upload_dir, "uploaded_file.csv")
+
         with open(file_path, "wb") as f:
             f.write(file)
         background_tasks.add_task(self.process_csv, file_path)
