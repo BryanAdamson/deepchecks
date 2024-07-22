@@ -71,6 +71,7 @@ To run the tests, use:
     ```
 
 ## Endpoints
+When testing the endpoints with curl, make sure to set the content-type as `application/json`.
 
 ### Interactions
 - #### POST api/interactions/bulk<br>
